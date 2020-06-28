@@ -107,7 +107,7 @@ const eZodiac = {
         },
         {
             name: "Rat",
-            earthlyBranch: "zi&solbar;k",
+            earthlyBranch: "zi",
             yinYang: "Yang"
         },
         {
@@ -181,8 +181,11 @@ function wZodDate(bDate) {
     for (i = 0; i < wZodiac.length; i++) {
         //inRange() is used to compare the dates' range and new Date()'s create dates to compare with bDate's date type
         if (inRange(bDate, new Date(wZodiac[i].startDate).getTime(), new Date(wZodiac[i].endDate).getTime())) {
-            //bWrite is set to true when this is written
+			//bWrite is set to true when this is written
             bWrite = true;
+			//save value to variable
+			let wName = (wZodiac[i].name);
+			document.write(`Your Western Zodiac is ${wName}. `)
             //code ends
             break;
         }
@@ -199,11 +202,18 @@ function wZodDate(bDate) {
 function eZodDate(bDate) {
     //using the remainder from the year given and the length of the eZodiac.animals
     let i = bDate.getFullYear() % eZodiac.animals.length;
-    //document.write(eZodiac.animals[i].name, eZodiac.animals[i].earthlyBranch, eZodiac.animals[i].yinYang);
+    let eName = eZodiac.animals[i].name;
+	let eBranch = eZodiac.animals[i].earthlyBranch;
+	let eYinYang = eZodiac.animals[i].yinYang;
+	
+	document.write(`Your Eastern Zodiac is the ${eName} with an  Earthly Branch of ${eBranch}, fixed sign of ${eYinYang} and `);
 }
 
 //eZodElement() is the same as eZodDate with the exception that the information needs to be repeated twice
 function eZodElement(bDate) {
     let i = Math.floor(bDate.getFullYear() / 2) % eZodiac.eZElements.length;
-    //document.write(eZodiac.eZElements[i]);
+    let eElement = eZodiac.eZElements[i];
+	document.write (`earth element of ${eElement}.`);
 }
+
+
